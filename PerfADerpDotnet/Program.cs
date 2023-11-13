@@ -19,13 +19,16 @@ namespace PerfADerpDotnet
         {
             Dictionary<string, TraceInfo> pairs = new Dictionary<string, TraceInfo>();
 
+            Console.Write("Process ID: ");
+            int processId = int.Parse(Console.ReadLine());
+
             Console.Write("Number of times to scan: ");
             int scanCount = int.Parse(Console.ReadLine());
             Console.WriteLine("Scanning...");
 
             for (int i = 0; i < scanCount; i++)
             {
-                using (DataTarget dt = DataTarget.AttachToProcess(37136, true))
+                using (DataTarget dt = DataTarget.AttachToProcess(processId, true))
                 {
                     var hostRuntime = dt.ClrVersions[0].CreateRuntime();
 
